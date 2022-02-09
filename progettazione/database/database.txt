@@ -1,0 +1,24 @@
+database
+
+CHAT
+	- idChat
+	- idUtenti (per aumentare la scalabilità)
+
+UTENTI
+	- id
+	- nome
+	- cognome
+	- email / username
+	- password
+	(- chiave pubblica)
+
+MESSAGGI
+	- id
+	- idMittente
+	- idChat (un utente può avere più chat)
+	- testo
+
+- Utente (_id_, nome, cognome, username, email, password)
+- Partecipante(*_idUtente_*, *_idChat_*)
+- Chat(*_id_*)
+- Messaggio(_id_, *idMittente*, *idChat*, testo)

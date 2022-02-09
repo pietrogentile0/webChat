@@ -1,0 +1,9 @@
+(- sign up)
+- log in
+- invio di messaggi
+- ricezione di messaggi
+- log out
+
+CLIENT
+
+SERVER
