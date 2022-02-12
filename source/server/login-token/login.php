@@ -1,6 +1,6 @@
 <?php
 require "DatabaseService.php";
-require "../../../jws/vendor/autoload.php";
+require "../../../../jws/vendor/autoload.php";
 use \Firebase\JWT\JWT;
 
 $params = json_decode(file_get_contents("php://input"), true);
