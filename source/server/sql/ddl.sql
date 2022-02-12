@@ -2,9 +2,9 @@ CREATE TABLE Utenti(
 	id Integer AUTO_INCREMENT,
     nome varchar(25),
     cognome varchar(25),
-    username varchar(20),
+    username varchar(20) not null,
     email varchar(40),
-    passwd char(32),
+    password char(64) not null,
     PRIMARY KEY (id)
 )
 
