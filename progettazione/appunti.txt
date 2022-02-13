@@ -5,5 +5,5 @@
 - log out
 
 CLIENT
-
+- la pagina di home deve essere mostrata solo se l'utente ha il token
 SERVER

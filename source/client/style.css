@@ -1,0 +1,22 @@
+body {
+    margin: 0%;
+    overflow: hidden;
+    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+    color: rgb(255, 251, 251);
+    /* background-color: rgb(130, 177, 161); */
+    background-color: rgb(225, 225, 225);
+}
+
+#navbar {
+    background-color: transparent;
+    color: #1679dc;
+}
+
+#logo-name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.tab {
+    background-color: rgb(110, 181, 157);
+}

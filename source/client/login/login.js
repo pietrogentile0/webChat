@@ -12,13 +12,13 @@ document.querySelector("#login-button").addEventListener("click", async () => {
         });
 
         if (res.status == 200) {
-            location.href = "./../index.html";
+            // setTimeout("location.href = 'http://localhost/chaliwhat/source/client/home/home.html'", 1500);
+            location.href = "http://localhost/chaliwhat/source/client/home/home.html";
         } else {
             let info = await res.json();
             alert(info.error);
         }
-
     } else {
-        alert("Inserisci credenziali")
+        alert("Inserisci credenziali");
     }
 });

@@ -5,6 +5,8 @@
 
     $params = json_decode(file_get_contents("php://input"), true);
 
+    header("Content-type: application/json");
+
     if(isset($params["username"]) && $params["username"] != "" && (isset($params["password"]) && $params["password"] != "")){
         $username = $params["username"];
         $password = hash("sha256", $params["password"]);
@@ -39,13 +41,14 @@
     
                     http_response_code(200);
                     $jwt = JWT::encode($token, $privateKey, "HS256");
-                    setcookie("token", $jwt, $expire_claim);
+                    setcookie("token", $jwt, $expire_claim, "/");   // il "/" utilizza il cookie per tutto il dominio
+                    echo json_encode(array("info"=>"Successful login"));    // perchè senza questo non va?
                 }
             } else {
                 http_response_code(400);
                 echo json_encode(array("error"=>"Invalid credentials"));
             }
-
+            
             // if($db->query($query)->num_rows === 1){
             //     $cookieName = "logged";
             //     $cookieValue = "true";
@@ -63,7 +66,7 @@
             //     echo(json_encode(array("error" => "Invalid credentials!")));
             // }
         } catch(Exception $e){
-            echo($e);
+            echo json_encode(array("error"=>$e));
         }
     } else{
         http_response_code(400);
