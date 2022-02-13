@@ -3,7 +3,7 @@ document.querySelector("#login-button").addEventListener("click", async () => {
     let password = document.querySelector("#password").value;
 
     if (username.length > 0 && password.length > 0) {
-        let res = await fetch("login.php", {
+        let res = await fetch("http://localhost/chaliwhat/source/server/login/login-cookie/login.php", {
             method: "POST",
             body: JSON.stringify({
                 "username": username,
