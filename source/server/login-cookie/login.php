@@ -1,12 +1,12 @@
 <?php
     require("./../login-token/DatabaseService.php");
-    require "./../../../jws/vendor/autoload.php";
+    require "./../jws/vendor/autoload.php";
     use \Firebase\JWT\JWT;
 
     $params = json_decode(file_get_contents("php://input"), true);
 
-    if(((isset($params["username"]) && $params["username"] != "") || (isset($params["email"]) && $params["email"] != "")) && (isset($params["password"]) && $params["password"] != "")){
-        $username = isset($params["username"]) ? $params["username"] : $params["email"];
+    if(isset($params["username"]) && $params["username"] != "" && (isset($params["password"]) && $params["password"] != "")){
+        $username = $params["username"];
         $password = hash("sha256", $params["password"]);
 
         $dbService = new DatabaseService("localhost", "root", "", "chaliwhat");
@@ -61,12 +61,15 @@
             //     $cookieName = "logged";
             //     $cookieValue = "false";
             //     setcookie($cookieName, $cookieValue);
-
+            
             //     http_response_code(400);
             //     echo(json_encode(array("error" => "Invalid credentials!")));
             // }
         } catch(Exception $e){
             echo($e);
         }
+    } else{
+        http_response_code(400);
+        echo json_encode(array("error"=>"Insert all credentials"));
     }
 ?>

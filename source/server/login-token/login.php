@@ -1,11 +1,11 @@
 <?php
 require "DatabaseService.php";
-require "../../../../jws/vendor/autoload.php";
+require "./../jws/vendor/autoload.php";
 use \Firebase\JWT\JWT;
 
 $params = json_decode(file_get_contents("php://input"), true);
 
-if((isset($params["email"]) || isset($params["username"])) && isset($params["password"])){
+if((isset($params   ["email"]) || isset($params["username"])) && isset($params["password"])){
     $username = isset($params["email"]) ? $params["email"] : $params["username"];
     $password = $params["password"];
 
@@ -24,7 +24,7 @@ if((isset($params["email"]) || isset($params["username"])) && isset($params["pas
             $dbPassword = $data["password"];
 
             if(hash("sha256", $password) === $dbPassword){
-                $privateKey = file_get_contents("./rsa_keys/private_key.txt");
+                $privateKey = file_get_contents("./../rsa_keys/private_key.txt");
                 $issuer_claim = "chaliwhat";
                 $issuedAt_claim = time();
                 $notBefore_claim = $issuedAt_claim;
