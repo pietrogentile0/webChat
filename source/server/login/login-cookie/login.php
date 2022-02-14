@@ -41,7 +41,7 @@
     
                     http_response_code(200);
                     $jwt = JWT::encode($token, $privateKey, "HS256");
-                    setcookie("token", $jwt, $expire_claim, "/");   // il "/" utilizza il cookie per tutto il dominio
+                    setcookie("token", $jwt, $expire_claim, "/chaliwhat");   // il "/" utilizza il cookie per tutto il dominio
                     echo json_encode(array("info"=>"Successful login"));    // perchè senza questo non va?
                 }
             } else {

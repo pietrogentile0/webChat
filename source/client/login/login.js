@@ -1,3 +1,7 @@
+if (isLogged()) {
+    location.href = "http://localhost/chaliwhat/source/client/home/home.html";
+}
+
 document.querySelector("#login-button").addEventListener("click", async () => {
     let username = document.querySelector("#username").value;
     let password = document.querySelector("#password").value;
