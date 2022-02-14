@@ -1,6 +1,9 @@
-if (isLogged()) {
-    location.href = "http://localhost/chaliwhat/source/client/home/home.html";
+async function controlIfLogged() {
+    if (await isLogged()) {
+        location.href = "http://localhost/chaliwhat/source/client/home/home.html";
+    }
 }
+controlIfLogged();
 
 document.querySelector("#login-button").addEventListener("click", async () => {
     let username = document.querySelector("#username").value;
@@ -16,7 +19,6 @@ document.querySelector("#login-button").addEventListener("click", async () => {
         });
 
         if (res.status == 200) {
-            // setTimeout("location.href = 'http://localhost/chaliwhat/source/client/home/home.html'", 1500);
             location.href = "http://localhost/chaliwhat/source/client/home/home.html";
         } else {
             let info = await res.json();
