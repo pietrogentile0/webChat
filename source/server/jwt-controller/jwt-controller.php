@@ -1,23 +1,41 @@
 <?php
-require "./../jws/vendor/autoload.php";
+require "F:/scuola/5quinta/server_xampp/chaliwhat/source/server/jws/vendor/autoload.php";
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 
-if(isset($_COOKIE["token"])){
+function isValidJWT($jwt, $privateKey){
     try{
-        $privateKey = file_get_contents("./../rsa_keys/private_key.txt");
-    
-        $jwt = $_COOKIE["token"];
-        echo $jwt;
         $decoded = (array) JWT::decode($jwt, new Key($privateKey, "HS256"));
-
-        http_response_code(200);
-        echo json_encode(array("message"=>"Authorized"));
-    }catch(Exception $e){
-        http_response_code(401);
+        return true;
+    } catch (Exception $e){
         echo json_encode(array("error"=>$e->getMessage()));
+        return false;
     }
-} else {
-    http_response_code(401);
-    echo json_encode(array("error"=>"No cookie set"));
+}
+
+function redirectToLogin(){
+    header("Location: http://localhost/chaliwhat/source/client/login/login_page.php");
+}
+
+function redirectToHome(){
+    header("Location: http://localhost/chaliwhat/source/client/home/home.php");
+}
+
+function isLogged(){
+    if(isset($_COOKIE["token"])){
+        try{
+            $privateKey = file_get_contents("F:/scuola/5quinta/server_xampp/chaliwhat/source/server/rsa_keys/private_key.txt");
+        
+            $jwt = $_COOKIE["token"];
+            if(isValidJWT($jwt, $privateKey)){
+                return true;
+            } else {
+                return false;
+            }
+        }catch(Exception $e){
+            echo json_encode(array("error"=>$e->getMessage()));
+        }
+    } else {
+        return false;
+    }
 }

@@ -14,10 +14,11 @@
         $dbService = new DatabaseService("localhost", "root", "", "chaliwhat");
         $db = $dbService->getConnection();
         try{
-            $query = "SELECT id, username, password FROM utenti WHERE (username = '$username' OR email = '$username') AND password = '$password'";
+            $query = "SELECT id, nome, username, password FROM utenti WHERE (username = '$username' OR email = '$username') AND password = '$password'";
 
             if(($data = $db->query($query)->fetch_assoc())){
                 $id = $data["id"];
+                $dbName = $data["nome"];
                 $dbUsername = $data["username"];
                 $dbPassword = $data["password"];
 
@@ -35,38 +36,22 @@
                         "exp" => $expire_claim,
                         "data" => array(
                             "id" => $id,
-                            "username"=> $dbUsername
+                            "username"=> $dbUsername,
+                            "name" => $dbName
                         )
                     );
     
                     http_response_code(200);
                     $jwt = JWT::encode($token, $privateKey, "HS256");
-                    setcookie("token", $jwt, $expire_claim, "/");   // il "/" utilizza il cookie per tutto il dominio
-                    echo json_encode(array("info"=>"Successful login"));    // perchè senza questo non va?
+                    setcookie("token", $jwt, $expire_claim, "/chaliwhat");   // il "/chaliwhat" utilizza il cookie per tutte le risorse in quella cartella
                 }
             } else {
                 http_response_code(400);
                 echo json_encode(array("error"=>"Invalid credentials"));
             }
-            
-            // if($db->query($query)->num_rows === 1){
-            //     $cookieName = "logged";
-            //     $cookieValue = "true";
-            //     $maxDate = time() + 86400/2; // 86400 = 1 day
-
-            //     setcookie($cookieName, $cookieValue, $maxDate);
-            //     http_response_code(200);
-            // }
-            // else{
-            //     $cookieName = "logged";
-            //     $cookieValue = "false";
-            //     setcookie($cookieName, $cookieValue);
-            
-            //     http_response_code(400);
-            //     echo(json_encode(array("error" => "Invalid credentials!")));
-            // }
         } catch(Exception $e){
-            echo json_encode(array("error"=>$e));
+            http_response_code(500);
+            echo json_encode(array("error"=>$e->getMessage()));
         }
     } else{
         http_response_code(400);

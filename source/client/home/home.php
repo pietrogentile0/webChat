@@ -1,3 +1,11 @@
+<?php
+    require "./../../server/jwt-controller/jwt-controller.php";
+
+    if(!isLogged()){
+        redirectToLogin();
+    }
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -22,11 +30,16 @@
 <body>
     <nav id="navbar" class="navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="http://localhost/chaliwhat/source/client/home/home.html">
+            <a class="navbar-brand" href="http://localhost/chaliwhat/source/client/home/home.php">
                 <img src="http://localhost/chaliwhat/source/client/home/chat.png" alt="Logo" width="60"
                     class="d-inline-block mr-2">
                 <span id="logo-name">ChaLiWhat</span>
             </a>
+            <div class="m-2">
+                <img src="http://localhost/chaliwhat/source/client/home/user_icon.png" alt="User icon" width="40"
+                    class="d-inline-block">
+                <div id="username"></div>
+            </div>
         </div>
     </nav>
 
@@ -71,11 +84,10 @@
     </div>
 
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <script src="http://localhost/chaliwhat/source/client/login/isLogged.js"></script>
+    <script src="http://localhost/chaliwhat/source/client/login/utilities.js"></script>
     <script src="http://localhost/chaliwhat/source/client/home/home.js"></script>
 </body>
 
