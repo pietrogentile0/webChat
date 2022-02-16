@@ -22,11 +22,11 @@ function redirectToHome(){
 }
 
 function isLogged(){
-    if(isset($_COOKIE["token"])){
+    if(isset($_COOKIE["x-chaliwhat-token"])){
         try{
             $privateKey = file_get_contents("F:/scuola/5quinta/server_xampp/chaliwhat/source/server/rsa_keys/private_key.txt");
         
-            $jwt = $_COOKIE["token"];
+            $jwt = $_COOKIE["x-chaliwhat-token"];
             if(isValidJWT($jwt, $privateKey)){
                 return true;
             } else {

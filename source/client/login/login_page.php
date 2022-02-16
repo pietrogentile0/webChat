@@ -39,7 +39,7 @@
     <div class="container mt-3 p-4 tab">
         <div class="flex-column justify-content-center ml-lg-5">
             <h2>Accedi con le tue credenziali</h2>
-            <div class="col mb-2">
+            <div class="col mb-3">
                 <input type="text" id="username" class="form-control input-text" placeholder="username or email">
             </div>
             <div class="col mb-3">
@@ -54,7 +54,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <script src="http://localhost/chaliwhat/source/client/login/utilities.js"></script>
+    <script src="http://localhost/chaliwhat/source/client/utilities.js"></script>
     <script src="http://localhost/chaliwhat/source/client/login/login.js"></script>
 </body>
 

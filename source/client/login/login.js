@@ -1,12 +1,3 @@
-// async function controlIfLogged() {
-//     if (await isLogged()) {
-//         location.href = "http://localhost/chaliwhat/source/client/home/home.html";
-//     }
-// }
-
-// // si possonao fare meno controlli?
-// controlIfLogged(); // non serve await perchè non ci interessa il risultato
-
 document.querySelector("#login-button").addEventListener("click", async () => {
     let username = document.querySelector("#username").value;
     let password = document.querySelector("#password").value;

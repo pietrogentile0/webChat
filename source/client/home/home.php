@@ -21,8 +21,13 @@
             text-decoration: underline;
         }
 
+        #mainFrame{
+            padding-bottom: 1.5%;
+        }
+
         .tab {
-            /* la tab deve essere alta fino al fondo */
+            border-radius: 1%;
+            height: 100%;
         }
     </style>
 </head>
@@ -30,7 +35,7 @@
 <body>
     <nav id="navbar" class="navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="http://localhost/chaliwhat/source/client/home/home.php">
+            <a class="navbar-brand" id="brand" href="http://localhost/chaliwhat/source/client/home/home.php">
                 <img src="http://localhost/chaliwhat/source/client/home/chat.png" alt="Logo" width="60"
                     class="d-inline-block mr-2">
                 <span id="logo-name">ChaLiWhat</span>
@@ -43,8 +48,8 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <div class="row gx-2">
+    <div class="container-fluid h-100">
+        <div class="row gx-2 h-100" id="mainFrame">
             <!--tab della conversazione-->
             <div class="col-4">
                 <div id="conversations" class="container tab">
@@ -57,7 +62,17 @@
                     </div>
                     <div class="row">
                         <div class="col">
+                            Robi
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
                             Pietro
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            Michele
                         </div>
                     </div>
                 </div>
@@ -87,7 +102,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <script src="http://localhost/chaliwhat/source/client/login/utilities.js"></script>
+    <script src="http://localhost/chaliwhat/source/client/utilities.js"></script>
     <script src="http://localhost/chaliwhat/source/client/home/home.js"></script>
 </body>
 

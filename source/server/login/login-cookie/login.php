@@ -43,7 +43,7 @@
     
                     http_response_code(200);
                     $jwt = JWT::encode($token, $privateKey, "HS256");
-                    setcookie("token", $jwt, $expire_claim, "/chaliwhat");   // il "/chaliwhat" utilizza il cookie per tutte le risorse in quella cartella
+                    setcookie("x-chaliwhat-token", $jwt, $expire_claim, "/chaliwhat");   // il "/chaliwhat" utilizza il cookie per tutte le risorse in quella cartella
                 }
             } else {
                 http_response_code(400);
