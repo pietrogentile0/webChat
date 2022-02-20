@@ -23,4 +23,14 @@ class DatabaseService{
 
         return $this->connection;
     }
+
+    public function closeConnection(){
+        try{
+            $this->connection->close();
+        } catch (Exception $e){
+            throw new Exception($e);
+        }
+
+        return true;
+    }
 }
