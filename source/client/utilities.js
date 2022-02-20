@@ -1,5 +1,5 @@
 function getJwt(cookies) {
-    const cookiesArray = document.cookie.split(";");
+    const cookiesArray = cookies.split(";");
     for (let c = 0; c < cookiesArray.length; c++) {
         let cookie = cookiesArray[c].split("=");
         if (cookie[0] === "x-chaliwhat-token") {
