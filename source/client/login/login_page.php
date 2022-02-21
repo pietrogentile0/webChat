@@ -1,5 +1,5 @@
 <?php
-    require "./../../server/jwt-controller/jwt-controller.php";
+    require $_SERVER["DOCUMENT_ROOT"]."chaliwhat/source/server/jwt-manager/jwt-controller.php";
 
     if (isLogged()){
         redirectToHome();
@@ -18,42 +18,43 @@
     <style>
         .tab {
             border-radius: 20px;
+            margin: 4% 4% 4% 10%;
+
+            width: 66%;
         }
 
         .input-text {
             width: 33%;
+            margin-bottom: 1%
+        }
+
+        #form{
+            margin: 3%;
         }
     </style>
 </head>
 
 <body>
-    <nav id="navbar" class="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="http://localhost/chaliwhat/source/client/home/home.html">
-                <img src="http://localhost/chaliwhat/source/client/home/chat.png" alt="Logo" width="60"
-                    class="d-inline-block mr-2">
-                <span id="logo-name">ChaLiWhat</span>
-            </a>
+    <div id="navbar">
+        <div id="logo">
+            <span><img src="http://localhost/chaliwhat/source/client/home/chat.png" alt="Logo" width="60"></span>
+            <span id="logo-name">ChaLiWhat</span>
         </div>
-    </nav>
-    <div class="container mt-3 p-4 tab">
-        <div class="flex-column justify-content-center ml-lg-5">
+    </div>
+    <div class="tab">
+        <div id="form">
             <h2>Accedi con le tue credenziali</h2>
-            <div class="col mb-3">
+            <div>
                 <input type="text" id="username" class="form-control input-text" placeholder="username or email">
             </div>
-            <div class="col mb-3">
+            <div>
                 <input type="password" id="password" class="form-control input-text" placeholder="password">
             </div>
-            <div class="col">
+            <div>
                 <input type="button" id="login-button" class="btn" value="Log in">
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
     <script src="http://localhost/chaliwhat/source/client/utilities.js"></script>
     <script src="http://localhost/chaliwhat/source/client/login/login.js"></script>
 </body>
