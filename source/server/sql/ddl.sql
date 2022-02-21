@@ -10,6 +10,7 @@ CREATE TABLE Utenti(
 
 CREATE TABLE Chat(
     id Integer AUTO_INCREMENT,
+    nome varchar(20),
     PRIMARY KEY (id)
 )
 
@@ -18,7 +19,8 @@ CREATE TABLE Partecipanti(
     idChat Integer not null,
     PRIMARY KEY (idUtente, idChat),
     FOREIGN KEY (idUtente) REFERENCES utenti(id),
-    FOREIGN KEY (idChat) REFERENCES Chat(id)
+    FOREIGN KEY (idChat) REFERENCES Chat(id),
+    UNIQUE (idUtente, idChat)
 )
 
 CREATE TABLE Messaggi(
