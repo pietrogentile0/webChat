@@ -1,6 +1,6 @@
 <?php
-    require("./../login-token/DatabaseService.php");
-    require "./../../jws/vendor/autoload.php";
+    require $_SERVER["DOCUMENT_ROOT"]."chaliwhat/source/server/login/login-token/DatabaseService.php";
+    require $_SERVER["DOCUMENT_ROOT"]."chaliwhat/source/server/jws/vendor/autoload.php";
     use \Firebase\JWT\JWT;
 
     $params = json_decode(file_get_contents("php://input"), true);
@@ -23,7 +23,7 @@
                 $dbPassword = $data["password"];
 
                 if(hash("sha256", $password)){
-                    $privateKey = file_get_contents("./../../rsa_keys/private_key.txt");
+                    $privateKey = file_get_contents($_SERVER["DOCUMENT_ROOT"]."chaliwhat/source/server/rsa_keys/private_key.txt");
                     $issuer_claim = "chaliwhat";
                     $issuedAt_claim = time();
                     $notBefore_claim = $issuedAt_claim;
