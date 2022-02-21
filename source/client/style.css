@@ -11,13 +11,159 @@ body {
 #navbar {
     background-color: transparent;
     color: #1679dc;
+    display: inline-block;
+    user-select: none;
+}
+
+#logo {
+    margin: 1%;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #1679dc;
 }
 
 #logo-name {
+    margin-left: 3%;
     font-size: 30px;
     font-weight: bold;
 }
 
+#logo:hover{
+    cursor: pointer;
+    color: #1660aa;
+}
+
+#user-info{
+    float: right;
+    display: flex;
+    align-items: center;
+    margin: 1% 2% 1% 1%;
+}
+
+#user-logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logout {
+    display: inline-block;
+    margin-left: 10px;
+    background-color: #4294ff;
+    font-size: small;
+    color: white;
+}
+
+#logout:hover{
+    background-color: #3b7acc;
+}
+
+#main-frame{
+    display: flex;
+    flex-direction: row;
+    height: 100%;   
+    width: 100%;
+}
+
 .tab {
     background-color: rgb(110, 181, 157);
+    border-radius: 1.5%;
+    padding: 0.5% 1% 0.5% 1%;
+    margin: 0% 1% 1% 1%;
 }
+
+#conversations-tab {
+    width: 34%;
+}
+
+#chat-tab {
+    width: 66%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-container{
+    max-width: 100%;
+    display: table-cell;
+    vertical-align: bottom;
+    flex: 1;
+    overflow-y: auto;
+}
+
+#conversations-container{
+    user-select: none;
+}
+
+.title{
+    user-select: none;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 130%;
+    margin-bottom: 2%;
+}
+
+.conversation{
+    font-size: large;
+    margin: 1%;
+    border-radius: 5px;
+    padding: 2%;
+    background-color: rgb(167, 203, 91);
+    overflow-x: hidden;
+}
+
+.conversation:hover{
+    cursor: pointer;
+    background-color: rgb(153, 181, 92);
+}
+
+.conversation-username{
+    display: inline-block;
+    margin-left: 10%;
+    font-style: italic;
+    font-size: 90%;
+}
+
+.form{
+    margin-top: 1%;
+    width: 97%;
+    display: flex;
+}
+
+.form>input{
+    margin: 0.5%;
+}
+
+.message{
+    overflow-wrap: break-word;
+    margin: 1%;
+    border-radius: 5px;
+    padding: 1%;
+    background-color: rgb(167, 203, 91);
+    max-width: 66%;
+    position: relative;
+    bottom: 1%;
+}
+
+.text-content::selection{
+    background: rgb(149, 181, 75);
+}
+
+.text-content{
+    margin-left: 5%;
+}
+
+.message-from-me{
+
+}
+
+.sender{
+    user-select: none;
+    position: absolut;
+    top: 1%;
+    left: 1%;
+    font-style: italic;
+    font-weight: bold;
+}
+
