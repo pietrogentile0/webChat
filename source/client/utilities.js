@@ -1,4 +1,4 @@
-function getJwt(cookies) {
+function getJwt(cookies) {  // passo i cookie perchè forse potrò riusare la funzione
     const cookiesArray = cookies.split(";");
     for (let c = 0; c < cookiesArray.length; c++) {
         let cookie = cookiesArray[c].split("=");
@@ -18,23 +18,8 @@ function getJwtPayload(jwt) {
     return JSON.parse(atob(jwt.split(".")[1]));
 }
 
-async function isLogged() {
-    let token = getJwt(document.cookie);
-
-    if (token != null) {
-        let res = await fetch("http://localhost/chaliwhat/source/server/jwt-controller/jwt-controller.php");
-
-        if (res.status == 200) {
-            return true;
-        }
-        else if (res.status == 401) {
-            return false;
-        } else {
-            return false;
-        }
-    } else {
-        return false;
-    }
+function getMyUsername() {
+    return getJwtPayload(getJwt(document.cookie)).data.username;
 }
 
 function capitalLetter(string) {
