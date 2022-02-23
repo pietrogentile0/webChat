@@ -48,7 +48,7 @@ body {
 #logout {
     display: inline-block;
     margin-left: 10px;
-    background-color: #4294ff;
+    background-color: #4294ff !important;
     font-size: small;
     color: white;
 }
@@ -74,14 +74,9 @@ body {
 /* GENERAL section */
 
 .title{
+    display: inline-block;
     user-select: none;
-    text-decoration: underline;
-    font-weight: bold;
-    font-size: 130%;
-    margin-bottom: 2%;
-    display: flex;
 }
-
 
 .form{
     margin-top: 1%;
@@ -105,13 +100,30 @@ body {
     width: 34%;
 }
 
+#conversation-title{
+    text-decoration: underline;
+    font-size: x-large;
+    font-weight: bold;
+    display: flex;
+    margin-bottom: 2%;
+    align-items: center;
+}
+
+#new-group{
+    float: right;
+    font-size: 14px;
+    margin-left: auto;
+    background-color: #4294ff;
+    color: white;
+}
+
 .conversation{
-    font-size: large;
     margin: 1%;
     border-radius: 5px;
     padding: 2%;
     background-color: rgb(167, 203, 91);
     overflow-x: hidden;
+    font-size: large;
 }
 
 .conversation-username{
@@ -134,6 +146,18 @@ body {
     overflow-y: auto;
 }
 
+#chat-name{
+    display: inline-block;
+    font-weight: bold;
+    font-size: x-large;
+}
+#chat-username{
+    margin-left: 5%;
+    display: inline-block;
+    font-size: medium;
+    font-style: italic;
+}
+
 .message{
     overflow-wrap: break-word;
     margin: 1%;
@@ -154,24 +178,6 @@ body {
 
 .message-from-me{
     margin: 0.5% 2% 0.5% auto;
-}
-
-.chat-title{
-    user-select: none;
-    display: flex;
-    align-items: center;
-}
-
-#chat-name{
-    display: inline-block;
-    font-weight: bold;
-    font-size: 150%;
-}
-#chat-username{
-    margin-left: 5%;
-    display: inline-block;
-    font-size: medium;
-    font-style: italic;
 }
 
 .sender{

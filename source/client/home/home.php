@@ -31,7 +31,10 @@
 
     <div id="main-frame">
         <div id="conversations-tab" class="tab">
-            <div class="title">Conversations</div>
+            <div id="conversation-title">
+                <div class="title">Conversations</div>
+                <!-- <input type="button" id="new-group" class="btn" value="New Group"> -->
+            </div>
             <div class="form" style="margin-bottom: 3%; width: 100%;">
                 <input type="text" id="new-conversation-username" class="form-control" placeholder="Search username">
                 <input type="button" id="search-username" class="btn" value="Contact">
@@ -40,8 +43,8 @@
         </div>
 
         <div id="chat-tab" class="tab">
-            <div class="chat-title">
-                <div id="chat-name"><div class="title">Chat</div></div>
+            <div class="title chat-title">
+                <div id="chat-name"></div>
                 <div id="chat-username"></div>
             </div>
             <div id="chat-container">
@@ -57,6 +60,7 @@
     <script src="http://localhost/chaliwhat/source/client/home/home.js"></script>
     <script src="http://localhost/chaliwhat/source/client/home/chat.js"></script>
     <script src="http://localhost/chaliwhat/source/client/home/conversation.js"></script>
+    <!-- <script src="http://localhost/chaliwhat/source/client/home/new-group.js"></script> -->
 </body>
 
 </html>
