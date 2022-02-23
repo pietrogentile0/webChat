@@ -1,7 +1,6 @@
-const userData = getJwtPayload(getJwt(document.cookie)).data;
-const currentChat = null;
-
-// reads the user's name from JWT and shows it with the user icon
+/** Sets user's name at the bottom of User's icon
+ * @param {string} name User's name
+ */
 function setIconName(name) {
     const usernameLocation = document.querySelector("#username");
 
