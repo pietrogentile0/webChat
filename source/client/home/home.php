@@ -38,13 +38,13 @@
             </div>
             <div id="conversations-container"></div>
         </div>
+
         <div id="chat-tab" class="tab">
-            <div class="title">Chat</div>
+            <div class="chat-title">
+                <div id="chat-name"><div class="title">Chat</div></div>
+                <div id="chat-username"></div>
+            </div>
             <div id="chat-container">
-                <div class="message">
-                    <div class="sender">Mario</div>
-                    <div class="text-content">Ciao questo è un nuovo messaggio</div>
-                </div>
             </div>
             <div class="form">
                 <input type="text" id="message" class="form-control" placeholder="Write new message...">
@@ -52,10 +52,11 @@
             </div>
         </div>
     </div>
+
     <script src="http://localhost/chaliwhat/source/client/utilities.js"></script>
     <script src="http://localhost/chaliwhat/source/client/home/home.js"></script>
-    <script src="http://localhost/chaliwhat/source/client/home/conversation.js"></script>
     <script src="http://localhost/chaliwhat/source/client/home/chat.js"></script>
+    <script src="http://localhost/chaliwhat/source/client/home/conversation.js"></script>
 </body>
 
 </html>
