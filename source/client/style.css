@@ -8,6 +8,8 @@ body {
     flex-direction: column;
 }
 
+/* NAVBAR section */
+
 #navbar {
     background-color: transparent;
     color: #1679dc;
@@ -29,10 +31,6 @@ body {
     font-weight: bold;
 }
 
-#logo:hover{
-    cursor: pointer;
-    color: #1660aa;
-}
 
 #user-info{
     float: right;
@@ -55,15 +53,13 @@ body {
     color: white;
 }
 
-#logout:hover{
-    background-color: #3b7acc;
-}
+/* MAIN-FRAME section*/
 
-#main-frame{
+#main-frame {
     display: flex;
     flex-direction: row;
-    height: 100%;   
-    width: 100%;
+    flex: 1;
+    min-height: 0;  /* di base è ad auto => la dimensione può generare oveflow*/
 }
 
 .tab {
@@ -71,30 +67,11 @@ body {
     border-radius: 1.5%;
     padding: 0.5% 1% 0.5% 1%;
     margin: 0% 1% 1% 1%;
-}
-
-#conversations-tab {
-    width: 34%;
-}
-
-#chat-tab {
-    width: 66%;
-    position: relative;
     display: flex;
     flex-direction: column;
 }
 
-#chat-container{
-    max-width: 100%;
-    display: table-cell;
-    vertical-align: bottom;
-    flex: 1;
-    overflow-y: auto;
-}
-
-#conversations-container{
-    user-select: none;
-}
+/* GENERAL section */
 
 .title{
     user-select: none;
@@ -102,6 +79,30 @@ body {
     font-weight: bold;
     font-size: 130%;
     margin-bottom: 2%;
+    display: flex;
+}
+
+
+.form{
+    margin-top: 1%;
+    display: flex;
+}
+
+.form>input{
+    margin: 0.5%;
+    padding: 7px;
+    flex-shrink: 1;
+}
+
+/* CONVERSATIONS section */
+
+#conversations-container{
+    user-select: none;
+    overflow-y: auto;
+}
+
+#conversations-tab {
+    width: 34%;
 }
 
 .conversation{
@@ -113,11 +114,6 @@ body {
     overflow-x: hidden;
 }
 
-.conversation:hover{
-    cursor: pointer;
-    background-color: rgb(153, 181, 92);
-}
-
 .conversation-username{
     display: inline-block;
     margin-left: 10%;
@@ -125,14 +121,17 @@ body {
     font-size: 90%;
 }
 
-.form{
-    margin-top: 1%;
-    width: 97%;
-    display: flex;
+/* CHAT section */
+
+#chat-tab {
+    width: 66%;
 }
 
-.form>input{
-    margin: 0.5%;
+#chat-container{
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 .message{
@@ -141,9 +140,8 @@ body {
     border-radius: 5px;
     padding: 1%;
     background-color: rgb(167, 203, 91);
-    max-width: 66%;
-    position: relative;
-    bottom: 1%;
+    display: flex;
+    margin: 0.5% auto 0.5% 0.5%;
 }
 
 .text-content::selection{
@@ -155,15 +153,45 @@ body {
 }
 
 .message-from-me{
+    margin: 0.5% 2% 0.5% auto;
+}
 
+.chat-title{
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+
+#chat-name{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 150%;
+}
+#chat-username{
+    margin-left: 5%;
+    display: inline-block;
+    font-size: medium;
+    font-style: italic;
 }
 
 .sender{
     user-select: none;
-    position: absolut;
-    top: 1%;
-    left: 1%;
     font-style: italic;
     font-weight: bold;
 }
 
+
+/* HOVER section */
+#logout:hover{
+    background-color: #3b7acc;
+}
+
+.conversation:hover{
+    cursor: pointer;
+    background-color: rgb(153, 181, 92);
+}
+
+#logo:hover{
+    cursor: pointer;
+    color: #1660aa;
+}
