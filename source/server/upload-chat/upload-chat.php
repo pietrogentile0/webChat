@@ -13,12 +13,23 @@
         $dbService = new DatabaseService("localhost", "root", "", "chaliwhat");
         $db = $dbService->getConnection();
 
-        $queryGetMessages = "SELECT * FROM Messaggi WHERE idChat = $chatId";
+        $queryGetMessages = "
+            SELECT m.id, m.idMittente, m.testo, IF(ISNULL(c.nome), null, username) AS username_mittente
+            FROM messaggi AS m, utenti AS u, chat AS c
+            WHERE u.id = m.idMittente
+                AND m.idChat = c.id
+                AND idChat = $chatId
+            ORDER BY m.date
+        ";
+        
         $messages_rs = $db->query($queryGetMessages);
 
+        $messagesToUpload = [];
         while(($message = $messages_rs->fetch_assoc())){
-            echo $message;
+            array_push($messagesToUpload, $message);
         }
+
+        echo json_encode($messagesToUpload);
 
         $dbService->closeConnection();
     } else {
