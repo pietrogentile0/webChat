@@ -1,10 +1,15 @@
-let currentConversations = [];  // contiene tutte le conversazioni dell'utente
+/** Adds the conversation to the array of conversations' names
+ * @param {string} username 
+ */
+function addConversationToConversations(name) {
+    currentConversations.push(name);
+}
 
 function createConversationDiv(conversationId, nome, username) {
     const conversationContainer = document.createElement("div");
     conversationContainer.classList.add("conversation");
     conversationContainer.id = conversationId;
-    conversationContainer.onclick = () => getChatWith(conversationId);
+    conversationContainer.onclick = () => getChatWith(conversationId, nome, username);
 
     const nameContainer = document.createElement("span");
     nameContainer.textContent = capitalLetter(nome);
@@ -25,7 +30,7 @@ function addConversation(id, nome, username) {
 
     const conversationDiv = createConversationDiv(id, nome, username);
 
-    if (username != null) { currentConversations.push(username); }
+    if (username != null) { addConversationToConversations(username) }
 
     conversationsBox.append(conversationDiv);
 }
@@ -46,15 +51,14 @@ async function getConversations() {
     }
 }
 
-getConversations();
-
 document.querySelector("#search-username").addEventListener("click", async () => {
     const username = document.querySelector("#new-conversation-username").value;
+    document.querySelector("#new-conversation-username").value = "";
 
     if (username.length > 0) {
         if (username != getMyUsername()) {
             if (!currentConversations.includes(username)) {
-                const res = await fetch("http://localhost/chaliwhat/source/server/create-conversation/create-conversation.php", {
+                const res = await fetch("http://localhost/chaliwhat/source/server/new-conversation/new-conversation.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -88,3 +92,6 @@ document.querySelector("#search-username").addEventListener("click", async () =>
         }
     }
 });
+
+
+getConversations();
