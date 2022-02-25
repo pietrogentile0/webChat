@@ -1,3 +1,5 @@
 /source/server/rsa_keys/
 progettazione/ui/index_page.odg
 source/server/upload-conversations/funzionamento.txt
+source/websocket/node_modules/
+source/websocket/package-lock.json
