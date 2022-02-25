@@ -160,6 +160,7 @@ body {
 
 .message{
     overflow-wrap: break-word;
+    max-width: 66%;
     margin: 1%;
     border-radius: 5px;
     padding: 1%;
@@ -170,10 +171,6 @@ body {
 
 .text-content::selection{
     background: rgb(149, 181, 75);
-}
-
-.text-content{
-    margin-left: 5%;
 }
 
 .message-from-me{
