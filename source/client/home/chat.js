@@ -29,14 +29,14 @@ function createMessageContainer(messageId, text, senderId = null, sender = null)
     // if is a group's message, add sender's username
     if (sender != null) {
         const usernameContainer = document.createElement("div");
-        usernameContainer.classList.add = "sender";
+        usernameContainer.classList.add("sender");
         usernameContainer.textContent = sender;
         message.append(usernameContainer);
     }
 
     // add message's text
     const textContainer = document.createElement("div");
-    textContainer.classList.add = "textContent";
+    textContainer.classList.add("text-content");
     textContainer.textContent = text;
     message.append(textContainer);
 
@@ -139,4 +139,3 @@ document.querySelector("#send-message").addEventListener("click", async () => {
         }
     }
 });
-
