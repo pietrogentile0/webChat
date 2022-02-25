@@ -18,7 +18,7 @@
             $dbService = new DatabaseService("localhost", "root", "", "chaliwhat");
             $db = $dbService->getConnection();
 
-            $newMessage = "INSERT INTO messaggi(idMittente, idChat, testo) VALUES ($idSender, $idChat, '$message')";
+            $newMessage = "INSERT INTO messaggi(idMittente, idChat, testo) VALUES ($idSender, $idChat, \"".$message."\")";
             $db->query($newMessage);
             
             $getMessageId = "SELECT LAST_INSERT_ID() AS id";
