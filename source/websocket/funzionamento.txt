@@ -1,0 +1,14 @@
+il client si collega con node
+    - node controlla se il JWT è valido
+    - il client aggiorna node sulla chat attiva in quel momento
+
+php informa node riguardo nuovo messaggio
+    parametri passati:
+        - id chat   --> per controllare tra tutte le connessioni quali hanno quella come conversazione attiva
+        - id messaggio --> per identificarlo nel DOM
+        - testo
+        - id mittente   [nel caso di gruppo]
+        - username del mittente [nel caso di gruppo]
+
+node guarda tra tutte le connessioni quali hanno la chat passata come quella attiva 
+    - se ci sono gli manda il nuovo messaggio
