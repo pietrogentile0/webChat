@@ -28,6 +28,7 @@ CREATE TABLE Messaggi(
     idMittente integer not null,
     idChat integer not null,
     testo varchar(500) not null,
+    date datetime DEFAULT CURRENT_TIMESTAMP(),
   	PRIMARY key (id),
     FOREIGN KEY (idMittente) REFERENCES utenti(id),
     FOREIGN key (idChat) REFERENCES chat(id)
