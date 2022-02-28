@@ -21,7 +21,7 @@
         return $response;
     }
 
-    function notifyToClient($serverUrl, $chatId, $messageId, $text, $senderId=null, $senderUsername=null){
+    function notifyToClient($serverUrl, $chatId, $messageId, $text, $datetime, $senderId=null, $senderUsername=null){
         $headers = array(
             "Content-Type: application/json",
         );
@@ -31,7 +31,8 @@
             "messageId"=>$messageId,
             "text"=>$text,
             "senderId"=>$senderId,
-            "senderUsername"=>$senderUsername
+            "senderUsername"=>$senderUsername,
+            "datetime"=>$datetime
         );
 
         $response =  makeHttpNotification($serverUrl, $headers, $body);
@@ -58,13 +59,15 @@
             $newMessage = "INSERT INTO messaggi(idMittente, idChat, testo) VALUES ($idSender, $idChat, \"".$message."\")";
             $db->query($newMessage);
             
-            $getMessageId = "SELECT LAST_INSERT_ID() AS id";
-            $newMessageId = $db->query($getMessageId)->fetch_assoc()["id"];
+            $getMessageId = "SELECT LAST_INSERT_ID() AS id, m.date FROM messaggi AS m WHERE m.id = id";
+            $rs = $db->query($getMessageId)->fetch_assoc();
+            $newMessageId = $rs["id"];
+            $datetime = $rs["date"];
 
             http_response_code(200);
             echo json_encode(array("messageId"=>$newMessageId));
 
-            notifyToClient("http://localhost:3000", $idChat, $newMessageId, $message, $idSender);
+            notifyToClient("http://localhost:3000", $idChat, $newMessageId, $message, $datetime, $idSender);
         }catch(Exception $e){
             http_response_code(500);
             echo json_encode(array("error"=>$e->getMessage()));
