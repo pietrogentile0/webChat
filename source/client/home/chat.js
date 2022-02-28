@@ -11,12 +11,15 @@ function setCurrentChatId(chatId) {
  * 
  * @param {number} messageId to show
  * @param {string} text of the message
+ * @param {String} datetime format: "yyyy/mm/dd hh:mm:ss"
  * @param {number} [senderId] ID of the sender
  * @param {string} [sender] name of the sender
  * 
  * @return {Element} message container
  */
-function createMessageContainer(messageId, text, senderId = null, sender = null) {
+function createMessageContainer(messageId, text, datetime, senderId = null, sender = null) {
+    const date = fromStringToDate(datetime);
+
     // create message container
     const message = document.createElement("div");
     message.classList.add("message");
@@ -41,7 +44,26 @@ function createMessageContainer(messageId, text, senderId = null, sender = null)
     textContainer.textContent = text;
     message.append(textContainer);
 
+    // add message's time
+    const timeContainer = document.createElement("div");
+    timeContainer.classList.add("time-container");
+    timeContainer.textContent = date.getHours() + ":" + date.getMinutes();
+    message.append(timeContainer);
+
     return message;
+}
+
+/** Parses datetime string to Date
+ * 
+ * @param {String} datetime format: "yyyy/mm/dd hh:mm:ss"
+ * @returns {Date} parsed date
+ */
+function fromStringToDate(datetime) {
+    const parts = datetime.split(" ");
+    const dateParts = parts[0].split("-");
+    const timeParts = parts[1].split(":");
+
+    return new Date(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1], timeParts[2]);
 }
 
 /** Downloads chat's messages from server
@@ -95,8 +117,8 @@ async function getChatWith(conversationId, name, username = null) {
     const messages = await downloadChatWith(currentChatId);
 
     for (let i of messages) {
-        const message = createMessageContainer(i.id, i.testo, i.idMittente, i.username_mittente);
-        chatContainer.prepend(message); //aggiunge all'inizio
+        const message = createMessageContainer(i.id, i.testo, i.date, i.idMittente, i.username_mittente);
+        chatContainer.prepend(message); //appends to the beginning
     }
 }
 
@@ -128,8 +150,8 @@ async function sendMessageToServer(message, idChat) {
 document.querySelector("#send-message").addEventListener("click", async () => {
     if (currentChatId != null) {
         const chatContainer = document.querySelector("#chat-container");
-        const message = document.querySelector("#message").value;
-        document.querySelector("#message").value = "";
+        const message = document.querySelector("#new-message-text").value;
+        document.querySelector("#new-message-text").value = "";
 
         if (message.length > 0) {
             try {

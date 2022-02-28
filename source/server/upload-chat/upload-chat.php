@@ -14,7 +14,7 @@
         $db = $dbService->getConnection();
 
         $queryGetMessages = "
-            SELECT m.id, m.idMittente, m.testo, IF(ISNULL(c.nome), null, username) AS username_mittente
+            SELECT m.id, m.idMittente, m.testo, m.date, IF(ISNULL(c.nome), null, username) AS username_mittente
             FROM messaggi AS m, utenti AS u, chat AS c
             WHERE u.id = m.idMittente
                 AND m.idChat = c.id
