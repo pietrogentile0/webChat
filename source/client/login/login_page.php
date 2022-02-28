@@ -55,7 +55,6 @@
             </div>
         </div>
     </div>
-    <script src="http://localhost/chaliwhat/source/client/utilities.js"></script>
     <script src="http://localhost/chaliwhat/source/client/login/login.js"></script>
 </body>
 
