@@ -1,20 +1,26 @@
 <?php
-if(isset($_REQUEST["name"]) && $_REQUEST["name"] != "" && isset($_REQUEST["surname"]) && $_REQUEST["surname"] != "" &&
-    isset($_REQUEST["email"]) && $_REQUEST["email"] != "" && isset($_REQUEST["password"]) && $_REQUEST["password"] != ""){
-    $name = $_REQUEST["name"];
-    $surname = $_REQUEST["surname"];
-    $email = $_REQUEST["email"];
-    $password = md5($_REQUEST["password"]);
+    require $_SERVER["DOCUMENT_ROOT"]."chaliwhat/source/server/login/login-token/DatabaseService.php";
 
-    $db = new mysqli("localhost", "root", "", "sistemi");
-    $query = "INSERT into Clienti(name, surname, email, password) values ('$name', '$surname', '$email', '$password')";
+    $credentials = json_decode(file_get_contents("php://input"), true);
 
-    try{
-        $db->query($query);
-    } catch (Exception $e){
-        echo($e);
+    if(isset($credentials["username"]) && $credentials["username"] != "" && isset($credentials["password"]) && $credentials["password"] != ""){
+        $username = $credentials["username"];
+        $password = hash("sha256", $credentials["password"]);
+        $name = $credentials["name"];
+        $surname = $credentials["surname"];
+        $email = $credentials["email"];
+        
+        $newUser = "INSERT INTO utenti(username, password, nome, cognome, email) VALUES (\"".$username."\", \"".$password."\",\"".$name."\",\"".$surname."\",\"".$email."\")";
+
+        try{
+            $dbService = new DatabaseService("localhost", "root", "", "chaliwhat");
+            $db = $dbService->getConnection();
+
+            $db->query($newUser);
+
+            http_response_code(200);
+        }catch(Exception $e){
+            http_response_code(409);
+            echo json_encode(array("error"=>$e->getMessage()));
+        }
     }
-}
-else{
-    echo("Inserire tutti i campi");
-}
