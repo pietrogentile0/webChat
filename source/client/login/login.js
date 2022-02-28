@@ -21,3 +21,7 @@ document.querySelector("#login-button").addEventListener("click", async () => {
         alert("Inserisci credenziali");
     }
 });
+
+document.querySelector("#signup-button").addEventListener("click", async () => {
+    location.href = "http://localhost/chaliwhat/source/client/signup/signup_page.php";
+});
