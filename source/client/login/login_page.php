@@ -28,7 +28,7 @@
             margin-bottom: 1%
         }
 
-        #form{
+        #form {
             margin: 3%;
         }
     </style>
@@ -43,15 +43,18 @@
     </div>
     <div class="tab">
         <div id="form">
-            <h2>Accedi con le tue credenziali</h2>
+            <h2>Login with your credentials</h2>
             <div>
-                <input type="text" id="username" class="form-control input-text" placeholder="username or email">
+                <input type="text" id="username" class="form-control input-text" placeholder="username or email" required>
             </div>
             <div>
-                <input type="password" id="password" class="form-control input-text" placeholder="password">
+                <input type="password" id="password" class="form-control input-text" placeholder="password" required>
             </div>
             <div>
-                <input type="button" id="login-button" class="btn" value="Log in">
+                <input type="button" id="login-button" class="btn btn-primary" value="Log in">
+            </div>
+            <div style="margin-top: 5%; float: right;">
+                <input type="button" class="btn btn-secondary" id="signup-button" value="New user">
             </div>
         </div>
     </div>
