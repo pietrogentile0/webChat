@@ -5,7 +5,9 @@ CREATE TABLE Utenti(
     username varchar(20) not null,
     email varchar(40),
     password char(64) not null,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE (email),
+    UNIQUE (username)
 )
 
 CREATE TABLE Chat(
