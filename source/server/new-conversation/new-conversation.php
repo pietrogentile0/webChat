@@ -50,7 +50,7 @@
                     addUserToChat($db, $idChat, $infoContact["id"]);
                     
                     http_response_code(200);
-                    echo json_encode(array("idUser"=>$idContact, "nome"=>$infoContact["nome"]));
+                    echo json_encode(array("idUser"=>$idContact, "nome"=>$infoContact["nome"], "idChat"=>$idChat));
                 }
                 else {
                     http_response_code(400);
