@@ -57,10 +57,10 @@
     </div>
 
     <script src="http://localhost/chaliwhat/source/client/utilities.js"></script>
+    <script src="http://localhost/chaliwhat/source/client/home/live-chat.js"></script>
     <script src="http://localhost/chaliwhat/source/client/home/home.js"></script>
     <script src="http://localhost/chaliwhat/source/client/home/chat.js"></script>
     <script src="http://localhost/chaliwhat/source/client/home/conversation.js"></script>
-    <script src="http://localhost/chaliwhat/source/client/home/live-chat.js"></script>
     <!-- <script src="http://localhost/chaliwhat/source/client/home/new-group.js"></script> -->
 </body>
 
