@@ -4,6 +4,7 @@
  */
 function setCurrentChatId(chatId) {
     currentChatId = chatId;
+    letKnowCurrentChat(currentChatId);
 }
 
 /**Builds the container for a message in the chat
@@ -118,7 +119,7 @@ async function sendMessageToServer(message, idChat) {
 
     const info = await res.json();
     if (res.status == 200) {
-        return info.id;
+        return info.messageId;
     } else {
         throw new Error(info.error);
     }
@@ -133,8 +134,8 @@ document.querySelector("#send-message").addEventListener("click", async () => {
         if (message.length > 0) {
             try {
                 const messageId = await sendMessageToServer(message, currentChatId);
-                const messageContainer = createMessageContainer(messageId, message, userData.id);
-                chatContainer.prepend(messageContainer);
+                // const messageContainer = createMessageContainer(messageId, message, userData.id);
+                // chatContainer.prepend(messageContainer);
             } catch (error) { alert(error); }
         }
     }
