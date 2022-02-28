@@ -70,7 +70,7 @@ document.querySelector("#search-username").addEventListener("click", async () =>
 
                 const data = await res.json();
                 if (res.status == 200) {
-                    addConversation(data.idUser, data.nome, username);
+                    addConversation(data.idChat, data.nome, username);
                     currentConversations.push(username);
                 }
                 else if (res.status == 404) {
