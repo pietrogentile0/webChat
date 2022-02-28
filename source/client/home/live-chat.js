@@ -11,10 +11,11 @@ ws.addEventListener("message", (message) => {
     if (body.function == "new-message") {
         const messageId = body.messageId;
         const text = body.text;
+        const datetime = body.datetime;
         const senderId = body.senderId;
         const senderUsername = body.senderUsername;
 
-        const messageContainer = createMessageContainer(messageId, text, senderId, senderUsername);
+        const messageContainer = createMessageContainer(messageId, text, datetime, senderId, senderUsername);
         chatContainer.prepend(messageContainer);
     }
 });
