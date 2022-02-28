@@ -50,7 +50,7 @@
             <div id="chat-container">
             </div>
             <div class="form">
-                <input type="text" id="message" class="form-control" placeholder="Write new message...">
+                <input type="text" id="new-message-text" class="form-control" placeholder="Write new message...">
                 <input type="button" id="send-message" class="btn" value="Send">
             </div>
         </div>
