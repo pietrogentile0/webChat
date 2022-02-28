@@ -25,10 +25,11 @@ app.post("/new-message", (req, res) => {
     const chatId = req.body.chatId;
     const messageId = req.body.messageId;
     const text = req.body.text;
+    const datetime = req.body.datetime;
     const senderId = req.body.senderId;
     const senderUsername = req.body.senderUsername;
 
-    sendMessageToClients(chatId, messageId, text, senderId, senderUsername);
+    sendMessageToClients(chatId, messageId, text, datetime, senderId, senderUsername);
 
     res.end();
 });
@@ -138,7 +139,7 @@ function removeSocketFromArray(allOpenedSockets, webSocket) {
  * @param {*} senderId 
  * @param {*} senderUsername 
  */
-function sendMessageToClients(chatId, messageId, text, senderId, senderUsername) {
+function sendMessageToClients(chatId, messageId, text, datetime, senderId, senderUsername) {
     const socketsToLetKnow = getSocketsByChatId(allOpenedSockets, chatId);
 
     for (const socket of socketsToLetKnow) {
@@ -147,6 +148,7 @@ function sendMessageToClients(chatId, messageId, text, senderId, senderUsername)
             chatId: chatId,
             messageId: messageId,
             text: text,
+            datetime: datetime,
             senderId: senderId,
             senderUsername: senderUsername
         }));
