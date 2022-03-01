@@ -1,9 +1,0 @@
-(- sign up)
-- log in
-- invio di messaggi
-- ricezione di messaggi
-- log out
-
-CLIENT
-- la pagina di home deve essere mostrata solo se l'utente ha il token
-SERVER
