@@ -1,18 +1,18 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT']."chaliwhat/source/server/jwt-manager/jwt-controller.php";
-    require $_SERVER['DOCUMENT_ROOT']."chaliwhat/source/server/login/login-token/DatabaseService.php";
-    require_once $_SERVER['DOCUMENT_ROOT']."chaliwhat/source/server/jwt-manager/jwt-getInfo.php"; // altimenti lo prende 2 volte
+require $_SERVER['DOCUMENT_ROOT'] . "chaliwhat/source/server/jwt-manager/jwt-controller.php";
+require $_SERVER['DOCUMENT_ROOT'] . "chaliwhat/source/server/databaseService/DatabaseService.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "chaliwhat/source/server/jwt-manager/jwt-getInfo.php"; // altimenti lo prende 2 volte
 
-    if(!isLogged()){
-        redirectToLogin();
-    }
+if (!isLogged()) {
+    redirectToLogin();
+}
 
-    $userId = getUserIdFromJwt(getJwt());
-    
-    $dbService = new DatabaseService("localhost", "root", "", "chaliwhat");
-    $db = $dbService->getConnection();
+$userId = getUserIdFromJwt(getJwt());
 
-    $getConversations = "
+$dbService = new DatabaseService("localhost", "root", "", "chaliwhat");
+$db = $dbService->getConnection();
+
+$getConversations = "
         SELECT c.id, COALESCE(c.nome, u.nome) AS nome, IF(ISNULL(c.nome), u.username, c.nome) AS username
         FROM utenti AS u,
             partecipanti AS p,
@@ -22,15 +22,15 @@
             AND u.id <> $userId
         GROUP BY c.id
     ";
-    
-    if(($conversations_rs = $db->query($getConversations))){
-        $conversations = [];
 
-        while(($temp = $conversations_rs->fetch_assoc())){
-            array_push($conversations, $temp);
-        }
-        
-        echo json_encode($conversations);
+if (($conversations_rs = $db->query($getConversations))) {
+    $conversations = [];
+
+    while (($temp = $conversations_rs->fetch_assoc())) {
+        array_push($conversations, $temp);
     }
 
-    $dbService->closeConnection();
+    echo json_encode($conversations);
+}
+
+$dbService->closeConnection();
