@@ -1,4 +1,4 @@
-/**Updates current chat (the one to show in the chat tab)
+/**Updates current chat to the one in the chat tab
  * 
  * @param {number} chatId 
  */
@@ -7,7 +7,7 @@ function setCurrentChatId(chatId) {
     letKnowCurrentChat(currentChatId);
 }
 
-/**Builds the container for a message in the chat
+/**Builds the container for a message
  * 
  * @param {number} messageId to show
  * @param {string} text of the message
@@ -102,7 +102,7 @@ function setChatTitle(name, username) {
     chatUsername.textContent = username;
 }
 
-/** When a conversation is selected, shows it in the right tab (chat tab)
+/** When a conversation is selected, this function shows it in the chat tab
  * @param {Number} conversationId ID of the selected conversation
  * @param {string} name Name of the conversation
  * @param {string} username Username of the person in the conversation (default is null if group)
@@ -122,7 +122,7 @@ async function getChatWith(conversationId, name, username = null) {
     }
 }
 
-/** Sends a message to the database
+/** Sends a new message to the database
  * 
  * @param {string} message 
  * @param {number} idChat 
@@ -147,17 +147,19 @@ async function sendMessageToServer(message, idChat) {
     }
 }
 
+/**When the "send-message" button is clicked, this function manages the sending of the message to the server
+ */
 document.querySelector("#send-message").addEventListener("click", async () => {
     if (currentChatId != null) {
-        const chatContainer = document.querySelector("#chat-container");
+        const chatContainer = document.querySelector("#chat-container");    // these are for not-live chatting
         const message = document.querySelector("#new-message-text").value;
         document.querySelector("#new-message-text").value = "";
 
         if (message.length > 0) {
             try {
                 const messageId = await sendMessageToServer(message, currentChatId);
-                // const messageContainer = createMessageContainer(messageId, message, userData.id);
-                // chatContainer.prepend(messageContainer);
+                // const messageContainer = createMessageContainer(messageId, message, userData.id);    // these are for not-live chatting
+                // chatContainer.prepend(messageContainer);     // these are for not-live chatting
             } catch (error) { alert(error); }
         }
     }

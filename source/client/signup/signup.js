@@ -1,7 +1,12 @@
+/** If the logo is clicked, user would be redirected to login page
+ */
 document.querySelector("#logo").addEventListener("click", () => {
     location.href = "http://localhost/chaliwhat/source/client/login/login_page.php";
 });
 
+/** If sign-up botton is clicked, user's credentials and information are sent to the server.
+ *  If all gets right, the user would be redirected to login page to log in
+ */
 document.querySelector("#signup-button").addEventListener("click", async () => {
     const username = document.querySelector("#username").value;
     const password = document.querySelector("#password").value;

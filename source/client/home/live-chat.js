@@ -1,9 +1,13 @@
 const ws = new WebSocket("ws://localhost:3001");
 
+// when the WebSocket is opened I immediately pass to the server user's id
 ws.onopen = () => {
     letKnowId(getMyId());
 }
 
+/** When a new message is received from the server, it's added to the chat container to be shown to user
+ * 
+ */
 ws.addEventListener("message", (message) => {
     const chatContainer = document.querySelector("#chat-container");
 
@@ -20,6 +24,11 @@ ws.addEventListener("message", (message) => {
     }
 });
 
+/** Sends to the server an user's Id, 
+ * this is useful to uniquely identify specific WebSockets in the server
+ * 
+ * @param {number} userId 
+ */
 function letKnowId(userId) {
     ws.send(JSON.stringify({
         function: "update-id",
@@ -27,6 +36,11 @@ function letKnowId(userId) {
     }));
 }
 
+/** Sends to the server the current active chat, 
+ * so it will send to client only messages relative to it
+ * 
+ * @param {number} chatId 
+ */
 function letKnowCurrentChat(chatId) {
     ws.send(JSON.stringify({
         function: "update-current-chat",

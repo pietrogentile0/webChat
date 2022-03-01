@@ -1,3 +1,7 @@
+/** when the login button is clicked, this function sends credentials to the server that,
+ *  if the login is successfully, sets a cookie storing the JWT.
+ *  If this is the case, the user would be redirected to the home page of the chat.
+*/
 document.querySelector("#login-button").addEventListener("click", async () => {
     let username = document.querySelector("#username").value;
     let password = document.querySelector("#password").value;
@@ -22,6 +26,7 @@ document.querySelector("#login-button").addEventListener("click", async () => {
     }
 });
 
+/** If the signup button is clicked, this function redirects to the sign-up page */
 document.querySelector("#signup-button").addEventListener("click", async () => {
     location.href = "http://localhost/chaliwhat/source/client/signup/signup_page.php";
 });
