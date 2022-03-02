@@ -7,30 +7,40 @@ if (!isLogged()) {
     redirectToLogin();
 }
 
-$userId = getUserIdFromJwt(getJwt());
+/** Fetches all conversations of an user and sends him them */
+function uploadConversations()
+{
+    $userId = getUserIdFromJwt(getJwt());
 
-$dbService = new DatabaseService("localhost", "root", "", "chaliwhat");
-$db = $dbService->getConnection();
+    $dbService = new DatabaseService("localhost", "root", "", "chaliwhat");
+    $db = $dbService->getConnection();
 
-$getConversations = "
-        SELECT c.id, COALESCE(c.nome, u.nome) AS nome, IF(ISNULL(c.nome), u.username, c.nome) AS username
-        FROM utenti AS u,
-            partecipanti AS p,
-            (SELECT c.* FROM partecipanti AS p, chat as c WHERE p.idChat = c.id AND p.idUtente = $userId) AS c
-        WHERE u.id = p.idUtente
-            AND p.idChat = c.id
-            AND u.id <> $userId
-        GROUP BY c.id
-    ";
+    /*
+    COALESCE is used to get the name of the other user if the chat isn't a group (in this case c.nome would be null)
+    IF is used to obtain also other user's username if the chat isn't a group (in this case c.nome would be null)
+    */
+    $getConversations = "
+            SELECT c.id, COALESCE(c.nome, u.nome) AS nome, IF(ISNULL(c.nome), u.username, null) AS username
+            FROM utenti AS u,
+                partecipanti AS p,
+                (SELECT c.* FROM partecipanti AS p, chat as c WHERE p.idChat = c.id AND p.idUtente = $userId) AS c -- this is to get all conversations in which the user is a partecipant 
+            WHERE u.id = p.idUtente
+                AND p.idChat = c.id
+                AND u.id <> $userId
+            GROUP BY c.id
+        ";
 
-if (($conversations_rs = $db->query($getConversations))) {
-    $conversations = [];
+    if (($conversations_rs = $db->query($getConversations))) {
+        $conversations = [];
 
-    while (($temp = $conversations_rs->fetch_assoc())) {
-        array_push($conversations, $temp);
+        while (($temp = $conversations_rs->fetch_assoc())) {
+            array_push($conversations, $temp);
+        }
+
+        echo json_encode($conversations);
     }
 
-    echo json_encode($conversations);
+    $dbService->closeConnection();
 }
 
-$dbService->closeConnection();
+uploadConversations();
