@@ -36,7 +36,7 @@ function letKnowId(userId) {
     }));
 }
 
-/** Sends to the server the current active chat, 
+/** Sends to the server the current active chat's id, 
  * so it will send to client only messages relative to it
  * 
  * @param {number} chatId 
@@ -44,6 +44,6 @@ function letKnowId(userId) {
 function letKnowCurrentChat(chatId) {
     ws.send(JSON.stringify({
         function: "update-current-chat",
-        currentChat: currentChatId
+        currentChat: chatId
     }));
 }
