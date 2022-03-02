@@ -183,6 +183,13 @@ body {
     font-weight: bold;
 }
 
+.date-container{
+    border-radius: 5px;
+    margin: 5px auto;
+    padding: 3px;
+    background-color: rgb(99, 157, 137);
+}
+
 .time-container{
     user-select: none;
     font-size: 12px;

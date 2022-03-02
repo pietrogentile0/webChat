@@ -5,9 +5,7 @@ ws.onopen = () => {
     letKnowId(getMyId());
 }
 
-/** When a new message is received from the server, it's added to the chat container to be shown to user
- * 
- */
+/** When a new message is received from the server, it's added to the chat container to be shown to user */
 ws.addEventListener("message", (message) => {
     const chatContainer = document.querySelector("#chat-container");
 
@@ -18,6 +16,14 @@ ws.addEventListener("message", (message) => {
         const datetime = body.datetime;
         const senderId = body.senderId;
         const senderUsername = body.senderUsername;
+
+        let tmpDate = fromStringToDate(datetime); // this tmp variable exists because dateCompare() wants Date element as parameter
+        if (dateCompare(tmpDate, lastDateOfCurrentChat) == 1) { // in this case i.date is bigger than last date
+            const dateElement = createNewDateElement(tmpDate);
+            chatContainer.prepend(dateElement);
+
+            lastDateOfCurrentChat = tmpDate;
+        }
 
         const messageContainer = createMessageContainer(messageId, text, datetime, senderId, senderUsername);
         chatContainer.prepend(messageContainer);
