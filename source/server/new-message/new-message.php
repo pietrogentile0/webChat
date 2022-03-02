@@ -78,7 +78,7 @@ function newMessage()
             $newMessage = "INSERT INTO messaggi(idMittente, idChat, testo) VALUES ($idSender, $idChat, \"" . $message . "\")";
             $db->query($newMessage);
 
-            $getMessageId = "SELECT LAST_INSERT_ID() AS id, m.date FROM messaggi AS m WHERE m.id = id";
+            $getMessageId = "SELECT LAST_INSERT_ID() AS id, m.date FROM messaggi AS m WHERE m.id = LAST_INSERT_ID()";
             $rs = $db->query($getMessageId)->fetch_assoc();
 
             $newMessageId = $rs["id"];
