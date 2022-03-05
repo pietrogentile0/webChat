@@ -1,46 +1,37 @@
-# ChaLiWhat, Chat Like Whatsapp
+# ChaLiWhat, Chat Like Whatsapp #
 
-## Da quali parti è composto il progetto?
+## Usage ###
 
-> Parte client
+1. Load the source code on a HTTP Server with enabled PHP interpreter.
 
-1. pagina di login, permette di effettuare il login o passare a pagina di signup
-    - *Tecnologie utilizzate:*
-        - JWT impostato come cookie che, contenendo informazioni riguardo l'utente, è utile anche per semplificare e snellire le comunicazioni tra client e server
+2. Search on browser < server root folder>/chaliwhat/source/client/home
 
-2. pagina di singup, permette di effettuare la creazione di un nuovo utente
+3. Signup or login with your credentials
 
-3. pagina principale (home):
-    - *Funzionalità*
-        - ricercare utente tramite username, per **inziare una conversazione**
-        - **selezionare un utente** tra le conversazioni iniziate per inviare messaggi
-        - **inviare messaggi** e riceverli in diretta, senza dover riaggionare la pagina
-    - *Tecnologie utilizzate:*
-        - HTML, CSS e Bootstrap per la visualizzazione della pagina
-        - Javascript per la comunicazione con il server per:
-            - comunicare con il server backbone per inviare o richiedere risorse, tramite Fetch API
-            - comunicare con il server side-car per ricevere i nuvoi messaggi in tempo reale, tramite WebSocket
-            - aggiungere gli elementi necessari per rendere dinamica la pagine, per mostrare conversazioni e messaggi
+4. Now you can create conversations and chat with you contacts
 
+## Source code structure and their functions ##
+### Client (chaliwhat/source/client/.) ###
+    - log-in page
+    - sign-up page
+    - home page
+        - conversation tab
+            - search new contacts and create new conversation
+            - open conversation on the chat tab
+        - chat tab
+            - read all messages of the chat, ordered by date and time
+            - send new message in the chat
+            - receive new message in realtime
 
-> Parte server di backbone (implementata in PHP), si occupa di:
-- gestire l'**autenticazione** degli utenti, fornendo JWT, e **verificandone** l'effettiva **validità**
-- gestire la creazione di **nuovi utenti**
-- inserire le **nuove conversazioni** nel database in base alle richieste degli utenti
-- inserire i **nuovi messaggi** nel database e **comunicare al server side-car** che ne gestisce l'invio, trmite WebSocket, ai client destinatari
-- **inviare** al client, all'apertura dela pagina home, tutte le **conversazioni inziate**
-- **inviare** al client, dopo che quest'ultimo abbia scelto una conversazione, tutti i **messaggi** che vi appartengono
+### Backbone server  (chaliwhat/source/server/.) ###
+    - issues jwt when logging in
+    - manages jwt information
+    - manages user's login
+    - manages user's signup
+    - creates conversation
+    - creates message in conversation and sends it to the side-car service
+    - sends conversation to the client
+    - sends chat of conversation 
 
-Parte server per gestione della chat live (implementata in javascript)
-
-
-### Come far funzionare la pagina:
-- caricare i file sorgente su un server che risponde al dominio localhost sulla porta 80
-- creare su di un database MySQL le tabelle in base al codice presente in source/server/sql/ddl.sql
-- eseguire il file notifier.js con Nodejs
-- ricercare sul browser http://localhost/chaliwhat/source/client/home/home.php
-
-Funzioni rimaste da implementare che però non ho fatto in tempo a fare:
-- creazione e gestione dei gruppi, comunque la struttura del codice e del database è già predisposta a questa espansione
-- aggiornamento automatico delle conversazioni tra tutti i membri (per esempio attualmente se un utente A crea una chat con l'utente B, B non saprà delle nuova creazione fino a quando non aggionerà la pagina e riscaricherà le nuove conversazioni)il sistema sarà simile a quello della chat live (che utilizza un side-car server in Node) e perciò non dovrebbe essere molto difficile implementarlo
-- gestione più generale delle notifiche e dell'invio dei messaggi da parte del server side-car (ampliarne l'invio a tutti coloro che hanno la chat, di cui il messaggio fa parte, attiva, ma inviare anche una sorte di notifica a coloro che rientrano in questo caso ma comunque hanno la chat tra le quelle inziate)
+### Side-car server  (chaliwhat/source/websocket/.) ###
+    - forwards new messages when created from backbone server to client using WebSocket
