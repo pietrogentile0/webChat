@@ -10,7 +10,7 @@
 
 4. Now you can create conversations and chat with you contacts
 
-## Source code structure and their functions ##
+## Source code structure and functions ##
 ### Client (chaliwhat/source/client/.) ###
     - log-in page
     - sign-up page
